@@ -360,5 +360,9 @@ $config['rewrite_short_tags'] = FALSE;
 $config['proxy_ips'] = '';
 
 
+/*Solr config*/
+$config['solr_url'] = 'http://127.0.0.1:8080/solr/core1/';
+
+
 /* End of file config.php */
 /* Location: ./application/config/config.php */
