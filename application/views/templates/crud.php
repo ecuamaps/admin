@@ -1,5 +1,3 @@
-<div class="large-12 columns">
-
 <?php foreach($output->css_files as $file): ?>
     <link type="text/css" rel="stylesheet" href="<?php echo $file; ?>" />
 <?php endforeach; ?>
@@ -8,11 +6,7 @@
     <script src="<?php echo $file; ?>"></script>
 <?php endforeach; ?>
 
-<h3><?=lang('setup.general.title')?></h3>
-
-
-    <div>
-        <?= $output->output; ?>
-    </div>
-
+<div class="large-12 columns">
+	<h3><?=$title?></h3>
+	<div><?= $output->output; ?></div>
 </div>

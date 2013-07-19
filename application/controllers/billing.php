@@ -12,6 +12,8 @@ class Billing extends CI_Controller {
 	}
 	
 	function index(){	
+		//$this->grocery_crud->set_theme('datatables');
+		
 		$this->grocery_crud->set_table('invoice');
 		
 		$this->grocery_crud->unset_add();
@@ -68,7 +70,7 @@ class Billing extends CI_Controller {
 		
 		$this->template->add_js('https://www.google.com/jsapi', 'import', FALSE, FALSE);
 
-		$this->template->write_view('content', 'templates/billing', $this->setup_params, TRUE);
+		$this->template->write_view('content', 'templates/crud', $this->setup_params, TRUE);
 		
 		$this->template->render();		
 	}

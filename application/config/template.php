@@ -61,7 +61,7 @@ $template['dashboard']['regions'] = array(
    'title',
    'content'=> array(
    		 'wrapper' => '<div>',
-   		 'attributes' => array('id' => 'content', 'class' => 'row')
+   		 'attributes' => array('id' => 'content', 'class' => 'row full-width')
    ),
 );
 $template['dashboard']['parser'] = 'parser';

@@ -12,6 +12,8 @@ class Posts extends CI_Controller {
 	}
 	
 	function index(){	
+		//$this->grocery_crud->set_theme('datatables');
+		
 		$this->grocery_crud->set_table('post');
 		
 		$this->grocery_crud->unset_add();
@@ -19,14 +21,14 @@ class Posts extends CI_Controller {
 		//$this->grocery_crud->unset_texteditor('notes');
 		
 		/* Campos de la lista */
-		$this->grocery_crud->columns('id','post_type_id','user_id','parent','name','content','creation','last_update','tags','state');
+		$this->grocery_crud->columns('id','post_type_id','user_id','name','creation','last_update','tags','state');
 		
 		/* Relacion con otras tablas */
 		$this->grocery_crud->set_relation('post_type_id','post_type','name_es');
 		$this->grocery_crud->set_relation('user_id','user','name');
 		
 		/* Campos para editar */
-		$this->grocery_crud->fields('user_id');
+		$this->grocery_crud->fields('user_id', 'state');
 		
 		//$this->grocery_crud->callback_after_update(array($this, 'after_update'));
 			
@@ -73,7 +75,7 @@ class Posts extends CI_Controller {
 		
 		$this->template->add_js('https://www.google.com/jsapi', 'import', FALSE, FALSE);
 
-		$this->template->write_view('content', 'templates/post', $this->setup_params, TRUE);
+		$this->template->write_view('content', 'templates/crud', $this->setup_params, TRUE);
 		
 		$this->template->render();		
 	}
