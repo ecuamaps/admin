@@ -51,8 +51,8 @@ class Business extends CI_Model {
 		$biz_type = $this->db->query($sql)->result();
 		$biz_type = $biz_type[0]; 
 		
-		$tags = trim($biz_type->tag. ' ' .trim(strtolower($post->tags)));
-		
+		$tags = trim(trim(strtolower($biz_type->name)).' '.trim(strtolower($biz_type->tag)).' '.trim(strtolower($post->tags)));
+					
 		//Solr data
 		$solr = array(
 			'id' => $id,
@@ -91,4 +91,29 @@ class Business extends CI_Model {
 		
 		
 	}		
+	
+	function activate($id){
+		return $this->db->update('post', array("state" => 'A'), array('id' => $id));
+	}
+	
+	function inactivate($id){
+		return $this->db->update('post', array("state" => 'I'), array('id' => $id));
+	}
+	
+	function get_products_by_invoice($invoice_id){
+		$sql = "SELECT b.* FROM invoice_items i, bz_products b WHERE i.invoice_id=$invoice_id AND i.bz_products_id = b.id";
+		$result = $this->db->query($sql)->result();
+		if(count($result))
+			return $result;
+			
+		return false; 
+	}
+	
+	function activate_product($id){
+		return $this->db->update('bz_products', array("active" => '1'), array('id' => $id));
+	}
+	
+	function inactivate_product($id){
+		return $this->db->update('bz_products', array("active" => '0'), array('id' => $id));
+	}
 }

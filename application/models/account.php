@@ -19,5 +19,18 @@ class Account extends CI_Model {
 	function delete($id){
 		return $this->db->delete('user', array('id' => $id)); 
 	}
+
+	function auth($username, $password){
+				
+		if(!$username || !$password)
+			return false;
+		
+		$password = md5($password);
 	
+		$user = $this->db->get_where('sys_user', array('username' => $username, 'password' => $password))->result();
+		if(count($user))
+			return $user[0];
+			
+		return false; 
+	}		
 }

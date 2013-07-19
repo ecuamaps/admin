@@ -443,6 +443,9 @@ function get_user_config() {
 function check_feature($feature) {
 
 	$user_config = get_user_config();
-
+	
+	if(!$user_config) //Assumption: is the admin user
+		return TRUE;
+		
 	return in_array($feature, $user_config['features']);
 }
