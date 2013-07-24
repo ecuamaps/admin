@@ -23,6 +23,8 @@ class Billing extends CI_Controller {
 		$this->grocery_crud->set_relation('user_id','user','name');
 		$this->grocery_crud->set_relation('post_id','post','name');
 		
+		$this->grocery_crud->columns('id', 'user_id', 'post_id', 'notes' ,'payment_method', 'date', 'balance', 'total', 'state');
+		
 		$this->grocery_crud->fields('balance','state','notes','billing_name','billing_identification','billing_address');
 		
 		$this->grocery_crud->callback_after_update(array($this, 'after_update'));
@@ -42,9 +44,9 @@ class Billing extends CI_Controller {
 		$invoice = $this->invoice->get_by_id($primary_key);
 		$invoice = $invoice[0];
 		
-		$fp = fopen('/tmp/debug', 'w');
+		/*$fp = fopen('/tmp/debug', 'w');
 		fwrite($fp, var_export($invoice, true));
-		fclose($fp);
+		fclose($fp);*/
 		
 		if($post_array['state'] == 'paid' && $invoice->activate_biz == '1'){
 			$this->business->activate($invoice->post_id);
@@ -59,6 +61,11 @@ class Billing extends CI_Controller {
 				$this->business->activate_product($p->id);
 			else
 				$this->business->inactivate_product($p->id);
+		}
+		
+		//Close the balance
+		if($post_array['state'] == 'paid'){
+			$this->invoice->update($primary_key, array('balance' => 0));
 		}
 		
 		return true;

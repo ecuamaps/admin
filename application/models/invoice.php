@@ -10,4 +10,8 @@ class Invoice extends CI_Model {
 	function get_by_id($id){
 		return $this->db->get_where('invoice', array('id' => $id))->result();
 	}
+	
+	function update($id, $data){
+		return $this->db->update('invoice', $data, array('id' => $id));
+	}
 }
