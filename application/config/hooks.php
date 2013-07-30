@@ -11,6 +11,13 @@
 */
 
 
-
+$hook['post_controller_constructor'] = array(
+                                'class'    => NULL,
+                                'function' => 'check_session',
+                                'filename' => 'check_session.php',
+                                'filepath' => 'hooks',
+                                'params'   => NULL
+                                );
+                                
 /* End of file hooks.php */
 /* Location: ./application/config/hooks.php */

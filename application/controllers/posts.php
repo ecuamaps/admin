@@ -38,37 +38,6 @@ class Posts extends CI_Controller {
 		$this->render();
 	}
 	
-	/*function after_update($post_array,$primary_key){
-		
-		$this->load->model('business'); 
-		$this->load->model('invoice'); 
-		
-		//Load the invoice
-		$invoice = $this->invoice->get_by_id($primary_key);
-		$invoice = $invoice[0];
-		
-		$fp = fopen('/tmp/debug', 'w');
-		fwrite($fp, var_export($invoice, true));
-		fclose($fp);
-		
-		if($post_array['state'] == 'paid' && $invoice->activate_biz == '1'){
-			$this->business->activate($invoice->post_id);
-		}elseif($post_array['state'] != 'paid' && $invoice->activate_biz == '1'){
-			$this->business->inactivate($invoice->post_id);
-		}
-		
-		$products = $this->business->get_products_by_invoice($primary_key);
-		
-		foreach($products as $p){
-			if($post_array['state'] == 'paid')
-				$this->business->activate_product($p->id);
-			else
-				$this->business->inactivate_product($p->id);
-		}
-		
-		return true;
-	}*/
-	
 	private function render(){
 		
 		$this->template->write('title', $this->title);

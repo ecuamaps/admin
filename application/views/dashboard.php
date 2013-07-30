@@ -43,6 +43,11 @@ $user = $this->session->userdata('user');
 	      <section class="top-bar-section">
 	        <ul class="right">
 
+			  <? if(check_feature('users')): ?>
+	          <li class="divider"></li>
+	          <li><?=anchor('users',lang('dashboard.users'))?></li>
+	          <? endif; ?>
+
 	          <? if(check_feature('billing')): ?>
 	          <li class="divider"></li>
 	          <li><?=anchor('billing',lang('dashboard.billing'))?></li>
