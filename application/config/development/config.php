@@ -360,9 +360,21 @@ $config['rewrite_short_tags'] = FALSE;
 $config['proxy_ips'] = '';
 
 
-/*Solr config*/
-$config['solr_url'] = 'http://127.0.0.1:8080/solr/core1/';
+//Solr Config
+$config['solr_options'] = array (
+    		'hostname' => '127.0.0.1',
+    		'port' => '8080',
+    		'path' => 'solr/core1',
+    		'protocol' => 'http'
+		);
 
+
+$config['logo_product_id'] = array(7, 8);
+$config['phones_product_id'] = array(1, 2);
+$config['extrainfo_product_id'] = array(3, 4);
+$config['ytvideo_product_id'] = array(9, 10);
+$config['tags_product_id'] = array(11, 12);
+$config['promo_product_id'] = array(13, 14);
 
 /* End of file config.php */
 /* Location: ./application/config/config.php */

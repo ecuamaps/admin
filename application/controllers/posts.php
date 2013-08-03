@@ -18,7 +18,7 @@ class Posts extends CI_Controller {
 		
 		$this->grocery_crud->unset_add();
 		$this->grocery_crud->unset_delete();
-		//$this->grocery_crud->unset_texteditor('notes');
+		$this->grocery_crud->unset_texteditor('tags');
 		
 		/* Campos de la lista */
 		$this->grocery_crud->columns('id','post_type_id','user_id','name','creation','last_update','tags','state');
@@ -28,14 +28,26 @@ class Posts extends CI_Controller {
 		$this->grocery_crud->set_relation('user_id','user','name');
 		
 		/* Campos para editar */
-		$this->grocery_crud->fields('user_id', 'state');
+		$this->grocery_crud->fields('user_id', 'state', 'name', 'tags');
 		
-		//$this->grocery_crud->callback_after_update(array($this, 'after_update'));
+		$this->grocery_crud->callback_after_update(array($this, 'after_update'));
 			
 		$this->setup_params['output'] = $this->grocery_crud->render();
   		$this->setup_params['title'] = lang('setup.rooms.title');
   		
 		$this->render();
+	}
+	
+	
+	function after_update($post_array,$primary_key){
+		
+		$this->load->model('business');
+		
+		if($post_array['state'] == 'A'){
+			$this->business->syncronize($primary_key);
+		}
+				
+		return true;
 	}
 	
 	private function render(){

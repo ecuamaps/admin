@@ -41,6 +41,28 @@ function get_hash() {
 	return md5($uniq);
 }
 
+function solr_syncronize($data){
+
+	$options = ci_config('solr_options');
+	extract($options);
+		
+	//Solr actualization
+	$options = array (
+   		'hostname' => $hostname,
+   		'port' => $port,
+   		'path' => $path
+	);
+ 
+	$client = new SolrClient($options);
+	$doc = new SolrInputDocument();
+	foreach($data as $i => $d)
+		$doc->addField($i, trim(strtolower($d)));
+	
+	$updateResponse = $client->addDocument($doc, FALSE);
+	//$client->commit();
+	return true;
+}
+
 function current_lang(){
 	$CI = & get_instance();
 	return $CI->lang->lang();
