@@ -63,6 +63,23 @@ function solr_syncronize($data){
 	return true;
 }
 
+function delete_solr_document($id){
+	$options = ci_config('solr_options');
+	extract($options);
+		
+	//Solr actualization
+	$options = array (
+   		'hostname' => $hostname,
+   		'port' => $port,
+   		'path' => $path
+	);
+ 
+	$client = new SolrClient($options);
+
+	//This will erase the entire index
+	$delResponse = $client->deleteByQuery("id:$id");	
+}
+
 function current_lang(){
 	$CI = & get_instance();
 	return $CI->lang->lang();

@@ -45,6 +45,8 @@ class Posts extends CI_Controller {
 		
 		if($post_array['state'] == 'A'){
 			$this->business->syncronize($primary_key);
+		}else{
+			delete_solr_document($primary_key);
 		}
 				
 		return true;
