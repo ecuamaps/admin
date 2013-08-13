@@ -23,7 +23,17 @@ class Billing extends CI_Controller {
 		$this->grocery_crud->set_relation('user_id','user','name');
 		$this->grocery_crud->set_relation('post_id','post','name');
 		
-		$this->grocery_crud->columns('id', 'user_id', 'post_id', 'notes' ,'payment_method', 'date', 'balance', 'total', 'state');
+		$this->grocery_crud->columns('id', 'user_id', 'post_id', 'notes' ,'payment_method', 'date', 'balance', 'iva' ,'total', 'seller_id', 'state');
+		
+		$this->grocery_crud->display_as('id','Numero');
+		$this->grocery_crud->display_as('user_id','Usuario');
+		$this->grocery_crud->display_as('post_id','Local');
+		$this->grocery_crud->display_as('notes','Notas');
+		$this->grocery_crud->display_as('payment_method','Método pago');
+		$this->grocery_crud->display_as('date','Fecha venta');
+		$this->grocery_crud->display_as('balance','Por pagar');
+		$this->grocery_crud->display_as('seller_id','Vendedor');
+		$this->grocery_crud->display_as('state','Estado');
 		
 		$this->grocery_crud->fields('balance','state','notes','billing_name','billing_identification','billing_address');
 		
