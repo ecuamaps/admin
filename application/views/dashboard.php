@@ -43,6 +43,11 @@ $user = $this->session->userdata('user');
 	      <section class="top-bar-section">
 	        <ul class="right">
 
+			  <? if(check_feature('config')): ?>
+	          <li class="divider"></li>
+	          <li><?=anchor('config',lang('dashboard.config'))?></li>
+	          <? endif; ?>
+
 			  <? if(check_feature('users')): ?>
 	          <li class="divider"></li>
 	          <li><?=anchor('users',lang('dashboard.users'))?></li>
