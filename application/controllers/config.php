@@ -16,18 +16,27 @@ class Config extends CI_Controller {
 		
 		$this->grocery_crud->set_table('config');
 		
+		$this->grocery_crud->display_as('keyname','Llave');
+		$this->grocery_crud->display_as('value','Valor');
+		
 		$this->grocery_crud->unset_add();
 		$this->grocery_crud->unset_delete();
 		
 		/* Campos para editar */
-		$this->grocery_crud->fields('value');
-			
+		$this->grocery_crud->fields('keyname','value');
+		$this->grocery_crud->callback_edit_field('keyname',array($this,'edit_keyname_field'));
+		
+		$this->grocery_crud->unset_texteditor('value');
+		
 		$this->setup_params['output'] = $this->grocery_crud->render();
   		$this->setup_params['title'] = lang('setup.rooms.title');
   		
 		$this->render();
 	}
 	
+	function edit_keyname_field($value, $primary_key){
+		return '<div id="field-content" class="readonly_label">'.$value.'</div>';
+	}
 	
 	function after_update($post_array,$primary_key){
 		
