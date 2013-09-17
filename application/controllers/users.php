@@ -21,7 +21,7 @@ class Users extends CI_Controller {
 		//$this->grocery_crud->unset_texteditor('notes');
 		
 		/* Campos de la lista */
-		$this->grocery_crud->columns('email','name','city','address','phone','cellphone', 'creation', 'status');
+		$this->grocery_crud->columns('id','email','name','city','address','phone','cellphone', 'creation', 'status');
 		
 		/* Campos para editar */
 		$this->grocery_crud->add_fields('email', 'passwd', 'name','creation', 'status');
